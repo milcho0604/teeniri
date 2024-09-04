@@ -1,9 +1,13 @@
 server:
+  port: 8088
   servlet:
     session:
       cookie:
         same-site: lax
-  port: 8088
+    multipart:
+      maxFileSize: 5120MB # 최대 5GB
+      maxRequestSize: 5120MB # 최대 5GB
+
 spring:
   security:
     oauth2:
@@ -16,7 +20,6 @@ spring:
             redirect-uri: "https://server.teenkiri.site/login/oauth2/code/google"
             client-name: Google
             authorization-grant-type: authorization_code
-
           kakao:
             client-id: ${KAKAO_TOKEN}
             client-secret: ${KAKAO_SECRET}
@@ -32,27 +35,21 @@ spring:
             client-name: naver
             redirect-uri: "http://localhost:8088/login/oauth2/code/naver"
             authorization-grant-type: authorization_code
-
         provider:
           kakao:
             authorization-uri: https://kauth.kakao.com/oauth/authorize
             token-uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: id
-
           google:
             authorization-uri: https://accounts.google.com/o/oauth2/auth
             token-uri: https://oauth2.googleapis.com/token
             user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
             user-name-attribute: sub
           naver:
-            # 사용자 인증 및 권한부여, 엑새스 토큰 획득
             authorization-uri: "https://nid.naver.com/oauth2.0/authorize"
-            # 엑세스 토큰 요청, 토큰 엔드포인트, 엑세스 토큰 사용
             token-uri: "https://nid.naver.com/oauth2.0/token"
-            # 사용자 정보 요청, 사용자 정보 엔드포인트, 사용자 정보 활용(프로필, 이메일주소, 닉네임, 프로필 사진 등)
             user-info-uri: "https://openapi.naver.com/v1/nid/me"
-            # oauth2 클라이언트가 naver로부터 사용자 정보 가져올때, 사용자의 이름 어떤 속성으로 식별할 지 지정
             user-name-attribute: response
 
   mvc:
@@ -75,13 +72,10 @@ spring:
       ddl-auto: create
     show-sql: true
 
-  servlet:
-    multipart:
-      maxFileSize: 5120MB # 최대 5GB
-      maxRequestSize: 5120MB # 최대 5GB
+  redis:
+    host: ${REDIS_HOST}
+    port: ${REDIS_PORT}
 
-
-  # Email settings
   mail:
     host: ${AUTH_HOST}
     port: ${AUTH_PORT}
@@ -97,10 +91,6 @@ spring:
             enable: true
         debug: true
 
-  redis:
-    host: ${REDIS_HOST}
-    port: ${REDIS_PORT}
-
 jwt:
   secret: ${JWT_SECRET}
   secretKeyRT: ${JWT_SECRET_RT}
@@ -114,7 +104,6 @@ logging:
   file:
     name: application.log
 
-# aws s3 설정
 cloud:
   aws:
     credentials:
@@ -124,4 +113,3 @@ cloud:
       static: ap-northeast-2
     s3:
       bucket: ${BUCKET}
-      
