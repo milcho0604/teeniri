@@ -124,7 +124,7 @@ public class UserService {
         redisService.saveVerificationCode(findPasswordDto.getEmail(), resetToken);
 
         // 이메일 전송
-        String resetLink = "http://localhost:8082/user/reset-password?token=" + resetToken;
+        String resetLink = "https://www.teenkiri.site/user/reset-password?token=" + resetToken;
         emailService.sendSimpleMessage(findPasswordDto.getEmail(), "비밀번호 재설정", "비밀번호 재설정 링크: " + resetLink);
     }
 
