@@ -1,5 +1,5 @@
 # 멀티 스테이지 빌드 방법 사용
-# 첫번째 스테이지
+# 첫번째 스테이지##
 FROM openjdk:11 as stage1
 WORKDIR /app
 
