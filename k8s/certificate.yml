@@ -1,0 +1,32 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    # 인증서 서버 주소. 해당 서버의 리소스를 통해 인증서 발행
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: snikuz12@naver.com
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+    - http01:
+        ingress:
+          class: nginx
+# 3. Certificate 생성
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: teenkiri-com-tls
+  namespace: teenkiri
+spec:
+  secretName: teenkiri-com-tls
+  duration: 2160h # 90일
+  renewBefore: 36h # 15일전에 갱신
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: server.teenkiri.site
+  dnsNames:
+    - server.teenkiri.site

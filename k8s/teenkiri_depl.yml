@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teenkiri-deployment
+  namespace: teenkiri
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: teenkiri
+  template:
+    metadata:
+      labels:
+        app: teenkiri
+    spec:
+      containers:
+        - name: teenkiri
+          image: 346903264902.dkr.ecr.ap-northeast-2.amazonaws.com/teenkiri:latest
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: "1"
+              memory: "500Mi"
+            requests:
+              cpu: "0.5"
+              memory: "500Mi"
+          env:
+          - name: REDIS_HOST
+            valueFrom:
+              secretKeyRef:
+                key: REDIS_HOST
+                name: teenkiri-secrets
+          - name: DB_HOST
+            valueFrom:
+              secretKeyRef:
+                key: DB_HOST
+                name: teenkiri-secrets
+          - name: DB_USERNAME
+            valueFrom:
+              secretKeyRef:
+                key: DB_USERNAME
+                name: teenkiri-secrets
+          - name: DB_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: DB_PASSWORD
+                name: teenkiri-secrets
+          - name: JWT_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: JWT_SECRET
+                name: teenkiri-secrets
+          - name: JWT_SECRET_RT
+            valueFrom:
+              secretKeyRef:
+                key: JWT_SECRET_RT
+                name: teenkiri-secrets
+          - name: AWS_ACCESS_KEY
+            valueFrom:
+              secretKeyRef:
+                key: AWS_ACCESS_KEY 
+                name: teenkiri-secrets
+          - name: AWS_SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                key: AWS_SECRET_KEY
+                name: teenkiri-secrets
