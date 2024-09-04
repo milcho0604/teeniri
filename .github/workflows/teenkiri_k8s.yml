@@ -1,0 +1,46 @@
+name: deploy ordersystem with k8s
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout github (source code checkout)
+        uses: actions/checkout@v2
+      
+      - name: install kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: "v1.25.9"
+        id: install
+
+      - name: configure aws (key setting)
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{secrets.AWS_KEY}}
+          aws-secret-access-key: ${{secrets.AWS_SECRET}}
+          aws-region: ap-northeast-2
+
+      - name: update cluster information
+        run : aws eks update-kubeconfig --name teenkiri --region ap-northeast-2
+
+      - name: login ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: build and push docker images to ecr (env:변수명지정)
+        env:
+          REGISTRY: 346903264902.dkr.ecr.ap-northeast-2.amazonaws.com
+          REPOSITORY: teenkiri
+        run: |
+          docker build -t $REGISTRY/$REPOSITORY:latest \
+           -f ./TEENKIRI/Dockerfile ./TEENKIRI
+           docker push $REGISTRY/$REPOSITORY:latest
+
+      - name: eks kubectl apply
+        run: |
+          kubectl apply -f ./TEENKIRI/k8s/teenkiri_depl.yml
+          kubectl rollout restart deployment teenkiri-deployment -n teenkiri
+        
