@@ -100,7 +100,6 @@ spec:
               secretKeyRef:
                 key: KAKAO_TOKEN
                 name: teenkiri-secrets
-                
           - name: KAKAO_SECRET
             valueFrom:
               secretKeyRef:
@@ -130,11 +129,6 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: AUTH_PORT
-                name: teenkiri-secrets
-          - name: AUTH_EMAIL
-            valueFrom:
-              secretKeyRef:
-                key: AUTH_EMAIL
                 name: teenkiri-secrets
           - name: AUTH_EMAIL
             valueFrom:
