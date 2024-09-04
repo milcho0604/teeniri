@@ -36,11 +36,11 @@ jobs:
           REPOSITORY: teenkiri
         run: |
           docker build -t $REGISTRY/$REPOSITORY:latest \
-           -f ./TEENKIRI/Dockerfile ./TEENKIRI
+           -f ./TEENKIRI_BACKEND/Dockerfile ./TEENKIRI
            docker push $REGISTRY/$REPOSITORY:latest
 
       - name: eks kubectl apply
         run: |
-          kubectl apply -f ./TEENKIRI/k8s/teenkiri_depl.yml
+          kubectl apply -f ./TEENKIRI_BACKEND/k8s/teenkiri_depl.yml
           kubectl rollout restart deployment teenkiri-deployment -n teenkiri
         
