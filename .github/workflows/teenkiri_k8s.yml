@@ -35,8 +35,7 @@ jobs:
           REGISTRY: 346903264902.dkr.ecr.ap-northeast-2.amazonaws.com
           REPOSITORY: teenkiri
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:latest \
-           -f ./Dockerfile ./teenkiri
+          docker build -t $REGISTRY/$REPOSITORY:latest -f ./Dockerfile .
            docker push $REGISTRY/$REPOSITORY:latest
 
       - name: eks kubectl apply
