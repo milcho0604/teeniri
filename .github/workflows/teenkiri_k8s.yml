@@ -24,7 +24,7 @@ jobs:
           aws-region: ap-northeast-2
 
       - name: update cluster information
-        run : aws eks update-kubeconfig --name teenkiri --region ap-northeast-2
+        run : aws eks update-kubeconfig --name teenkiri-cluster --region ap-northeast-2
 
       - name: login ECR
         id: login-ecr
