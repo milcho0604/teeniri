@@ -31,6 +31,10 @@ spec:
               secretKeyRef:
                 key: REDIS_HOST
                 name: teenkiri-secrets
+          - name: REDIS_PORT
+            valueFrom:
+              secretKeyRef:
+                key: REDIS_PORT
           - name: DB_HOST
             valueFrom:
               secretKeyRef:
@@ -65,4 +69,89 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: AWS_SECRET_KEY
+                name: teenkiri-secrets
+          - name: JWT_TIME
+            valueFrom:
+              secretKeyRef:
+                key: JWT_TIME
+                name: teenkiri-secrets
+          - name: JWT_TIME_RT
+            valueFrom:
+              secretKeyRef:
+                key: JWT_TIME_RT
+                name: teenkiri-secrets
+          - name: GOOGLE_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: GOOGLE_TOKEN
+                name: teenkiri-secrets
+          - name: GOOGLE_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: GOOGLE_SECRET
+                name: teenkiri-secrets
+          - name: GOOGLE_SCOPE
+            valueFrom:
+              secretKeyRef:
+                key: GOOGLE_SCOPE
+                name: teenkiri-secrets
+          - name: KAKAO_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: KAKAO_TOKEN
+                name: teenkiri-secrets
+          - name: KAKAO_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: KAKAO_SECRET
+                name: teenkiri-secrets
+          - name: NAVER_TOKEN
+            valueFrom:
+              secretKeyRef:
+                key: NAVER_TOKEN
+                name: teenkiri-secrets
+          - name: NAVER_SECRET
+            valueFrom:
+              secretKeyRef:
+                key: NAVER_SECRET
+                name: teenkiri-secrets
+          - name: NAVER_SCOPE
+            valueFrom:
+              secretKeyRef:
+                key: NAVER_SCOPE
+                name: teenkiri-secrets
+          - name: AUTH_HOST
+            valueFrom:
+              secretKeyRef:
+                key: AUTH_HOST
+                name: teenkiri-secrets
+          - name: AUTH_PORT
+            valueFrom:
+              secretKeyRef:
+                key: AUTH_PORT
+                name: teenkiri-secrets
+          - name: AUTH_EMAIL
+            valueFrom:
+              secretKeyRef:
+                key: AUTH_EMAIL
+                name: teenkiri-secrets
+          - name: AUTH_EMAIL
+            valueFrom:
+              secretKeyRef:
+                key: AUTH_EMAIL
+                name: teenkiri-secrets
+          - name: AUTH_KEY
+            valueFrom:
+              secretKeyRef:
+                key: AUTH_KEY
+                name: teenkiri-secrets
+          - name: BUCKET
+            valueFrom:
+              secretKeyRef:
+                key: BUCKET
+                name: teenkiri-secrets
+          - name: KAKAO_SCOPE
+            valueFrom:
+              secretKeyRef:
+                key: KAKAO_SCOPE
                 name: teenkiri-secrets
