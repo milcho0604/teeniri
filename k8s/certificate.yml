@@ -30,3 +30,4 @@ spec:
   commonName: server.teenkiri.site
   dnsNames:
     - server.teenkiri.site
+    
