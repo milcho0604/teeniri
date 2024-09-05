@@ -91,11 +91,6 @@ spec:
               secretKeyRef:
                 key: GOOGLE_SECRET
                 name: teenkiri-app-secrets
-          - name: GOOGLE_SCOPE
-            valueFrom:
-              secretKeyRef:
-                key: GOOGLE_SCOPE
-                name: teenkiri-app-secrets
           - name: KAKAO_TOKEN
             valueFrom:
               secretKeyRef:
@@ -106,11 +101,6 @@ spec:
               secretKeyRef:
                 key: KAKAO_SECRET
                 name: teenkiri-app-secrets
-          - name: KAKAO_SCOPE
-            valueFrom:
-              secretKeyRef:
-                key: KAKAO_SCOPE
-                name: teenkiri-app-secrets
           - name: NAVER_TOKEN
             valueFrom:
               secretKeyRef:
@@ -120,11 +110,6 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: NAVER_SECRET
-                name: teenkiri-app-secrets
-          - name: NAVER_SCOPE
-            valueFrom:
-              secretKeyRef:
-                key: NAVER_SCOPE
                 name: teenkiri-app-secrets
           - name: AUTH_HOST
             valueFrom:
