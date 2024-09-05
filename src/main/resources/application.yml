@@ -20,14 +20,14 @@ spring:
             client-id: ${GOOGLE_TOKEN}
             client-secret: ${GOOGLE_SECRET}
             scope: profile, email
-#            redirect-uri: "https://server.teenkiri.site/login/oauth2/code/google"
+            redirect-uri: "https://server.teenkiri.site/login/oauth2/code/google"
             client-name: Google
             authorization-grant-type: authorization_code
           kakao:
             client-id: ${KAKAO_TOKEN}
             client-secret: ${KAKAO_SECRET}
             scope: account_email, profile_nickname
-#            redirect-uri: "https://server.teenkiri.site/login/oauth2/code/kakao"
+            redirect-uri: "https://server.teenkiri.site/login/oauth2/code/kakao"
             client-name: Kakao
             client-authentication-method: client_secret_post
             authorization-grant-type: authorization_code
