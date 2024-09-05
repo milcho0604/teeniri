@@ -10,6 +10,8 @@ server:
     tomcat:
       max-http-post-size: 3221225472 # 3GB
       max-swallow-size: 3221225472 # 3GB
+
+
 spring:
   logging:
     level:

@@ -4,15 +4,11 @@ metadata:
   name: teenkiri-ingress
   namespace: teenkiri  
   annotations:
-    # Nginx는 클라이언트에게 세션 쿠키를 발급하며, 이 쿠키를 통해 클라이언트의 요청이 항상 동일한 백엔드 서비스(혹은 인스턴스)에 전달
     nginx.ingress.kubernetes.io/affinity: "cookie"  # 세션 스티키니스 활성화
     nginx.ingress.kubernetes.io/session-cookie-name: "teenkiri-session"  # 세션 쿠키 이름
     nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"  # 쿠키 해시 알고리즘
-    nginx.ingress.kubernetes.io/proxy-body-size: 3g
-    nginx.ingress.kubernetes.io/client-body-buffer-size: 3g
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
-
 spec:
   tls:
   - hosts:
@@ -20,12 +16,12 @@ spec:
     secretName: teenkiri-com-tls
   rules:
     - host: server.teenkiri.site
-      http: 
+      http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
                 name: teenkiri-service
-                port: 
+                port:
                   number: 80
