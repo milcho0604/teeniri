@@ -5,6 +5,8 @@ import com.beyond.teenkiri.user.domain.User;
 import com.beyond.teenkiri.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.UnsatisfiedDependencyException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -23,6 +25,9 @@ import java.util.UUID;
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
     private final UserRepository userRepository;
 
     @Override
@@ -54,18 +59,21 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         }else {
             user = saveOrUpdate(attributes);
         }
+
+
+
         if (user.getName() == null){
             String temp = "이름을 변경해주세요";
             user.updateName(temp);
         }
-
         if (user.getNickname() == null) {
             String uuidNick = String.valueOf(UUID.randomUUID());
             user.updateNick(uuidNick);
         }
         if (user.getPassword() == null) {
             String uuidPass = String.valueOf(UUID.randomUUID());
-            user.updatePass(uuidPass);
+            String tempPass = passwordEncoder.encode(uuidPass);
+            user.updatePass(tempPass);
         }
         if (user.getAddress() == null){
             String address = "임시주소입니다. 변경해주세요";
