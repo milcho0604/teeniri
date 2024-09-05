@@ -238,9 +238,4 @@ public class LectureService {
         return lectureRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("없는 강의입니다."));
     }
-
-
-
-
-
 }

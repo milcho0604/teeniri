@@ -24,4 +24,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<String> findAllAdminEmails();
     List<User> findAllByRole(Role role);
     Optional<User> findByEmailIgnoreCase(String email);
+    @Query("SELECT u.nickname FROM User u")
+    List<String> findAllNicknames();
 }
