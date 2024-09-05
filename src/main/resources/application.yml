@@ -5,9 +5,10 @@ server:
       cookie:
         same-site: lax
     multipart:
-      maxFileSize: 5120MB # 최대 5GB
-      maxRequestSize: 5120MB # 최대 5GB
-
+#      maxFileSize: 5120MB # 최대 5GB
+#      maxRequestSize: 5120MB # 최대 5GB
+      max-file-size: 3GB
+      max-request-size: 3GB
 spring:
   logging:
     level:
