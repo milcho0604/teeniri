@@ -9,6 +9,9 @@ server:
       maxRequestSize: 5120MB # 최대 5GB
 
 spring:
+  logging:
+    level:
+      root: info
   security:
     oauth2:
       client:
@@ -113,3 +116,4 @@ cloud:
       static: ap-northeast-2
     s3:
       bucket: ${BUCKET}
+
