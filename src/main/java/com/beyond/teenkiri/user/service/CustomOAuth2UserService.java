@@ -26,8 +26,6 @@ import java.util.UUID;
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
-    @Autowired
     private final UserRepository userRepository;
 
     @Override
@@ -72,8 +70,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         }
         if (user.getPassword() == null) {
             String uuidPass = String.valueOf(UUID.randomUUID());
-            String tempPass = passwordEncoder.encode(uuidPass);
-            user.updatePass(tempPass);
+            user.updatePass(uuidPass);
         }
         if (user.getAddress() == null){
             String address = "임시주소입니다. 변경해주세요";
