@@ -25,7 +25,9 @@ import java.util.UUID;
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
+    @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
     private final UserRepository userRepository;
 
     @Override
@@ -58,7 +60,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
             user = saveOrUpdate(attributes);
         }
 
-
+        
 
         if (user.getName() == null){
             String temp = "이름을 변경해주세요";
