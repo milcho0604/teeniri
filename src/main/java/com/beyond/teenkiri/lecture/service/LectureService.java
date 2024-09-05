@@ -38,7 +38,7 @@ public class LectureService {
     private final CommonMethod commonMethod;
     private final UploadAwsFileService uploadAwsFileService;
     private final EnrollmentService enrollmentService;
-//    private final EnrollmentRepository enrollmentRepository;
+    //    private final EnrollmentRepository enrollmentRepository;
     private final UserService userService;
     private final UserSubjectRepository userSubjectRepository;
 
@@ -93,7 +93,7 @@ public class LectureService {
         return lectureDetResDto;
     }
 
-//    유저별 강의 수강용 상세 페이지
+    //    유저별 강의 수강용 상세 페이지
     public LectureDetPerUserResDto lectureDetailPerUser(Long id){
         System.out.println(11111);
         Lecture lecture = lectureRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("없는 강의입니다."));

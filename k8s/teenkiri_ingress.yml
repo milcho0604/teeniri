@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: teenkiri-ingress
-  namespace: teenkiri  
+  namespace: teenkiri
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "3G"
     nginx.ingress.kubernetes.io/client-body-buffer-size: "3G"
@@ -13,9 +13,9 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   tls:
-  - hosts:
-    - "server.teenkiri.site"
-    secretName: teenkiri-com-tls
+    - hosts:
+        - "server.teenkiri.site"
+      secretName: teenkiri-com-tls
   rules:
     - host: server.teenkiri.site
       http:
