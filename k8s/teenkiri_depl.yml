@@ -4,7 +4,7 @@ metadata:
   name: teenkiri-deployment
   namespace: teenkiri
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: teenkiri
