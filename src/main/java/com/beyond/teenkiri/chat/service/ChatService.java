@@ -103,7 +103,6 @@ public class ChatService implements MessageListener {
         return responseMessage;
     }
 
-    // Redis Pub/Sub으로 받은 메시지를 WebSocket으로 전송하는 로직
     @Override
     public void onMessage(Message message, byte[] pattern) {
         try {

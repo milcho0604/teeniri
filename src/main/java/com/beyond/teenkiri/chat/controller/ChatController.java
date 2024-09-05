@@ -46,6 +46,7 @@ public class ChatController {
         }
 
         ChatMessageDto savedMessage = chatService.saveMessage(chatMessageDto);
+        System.out.println("Publishing 레디스... " + topic + " with message ID: " + savedMessage.getId());
         redisPublisher.publishMessage(topic, savedMessage);
     }
 
