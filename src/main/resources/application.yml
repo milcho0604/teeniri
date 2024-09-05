@@ -9,6 +9,7 @@ server:
 #      maxRequestSize: 5120MB # 최대 5GB
       max-file-size: 3GB
       max-request-size: 3GB
+      enabled: true
 spring:
   logging:
     level:
