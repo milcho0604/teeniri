@@ -5,8 +5,8 @@ server:
       cookie:
         same-site: lax
     multipart:
-      max-file-size: 3221225472 # 3GB
-      max-request-size: 3221225472 # 3GB
+      max-file-size:  3GB # 3GB
+      max-request-size: 3GB # 3GB
     tomcat:
       max-http-post-size: 3221225472 # 3GB
       max-swallow-size: 3221225472 # 3GB
