@@ -4,6 +4,7 @@ import com.beyond.teenkiri.chat.domain.Chat;
 import com.beyond.teenkiri.chat.repository.ChatRepository;
 import com.beyond.teenkiri.comment.domain.Comment;
 import com.beyond.teenkiri.comment.repository.CommentRepository;
+import com.beyond.teenkiri.common.domain.DelYN;
 import com.beyond.teenkiri.notification.controller.SseController;
 import com.beyond.teenkiri.notification.domain.Notification;
 import com.beyond.teenkiri.notification.repository.NotificationRepository;
@@ -15,7 +16,9 @@ import com.beyond.teenkiri.report.domain.Report;
 import com.beyond.teenkiri.report.dto.ReportListResDto;
 import com.beyond.teenkiri.report.dto.ReportSaveReqDto;
 import com.beyond.teenkiri.report.repository.ReportRepository;
+import com.beyond.teenkiri.user.domain.DelUser;
 import com.beyond.teenkiri.user.domain.User;
+import com.beyond.teenkiri.user.repository.DelUserRepository;
 import com.beyond.teenkiri.user.repository.UserRepository;
 import com.beyond.teenkiri.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,9 +46,10 @@ public class ReportService {
     private final ChatRepository chatRepository;
     private final NotificationRepository notificationRepository;
     private final SseController sseController;
+    private final DelUserRepository delUserRepository;
 
     @Autowired
-    public ReportService(ReportRepository reportRepository, UserService userService, QnARepository qnARepository, PostRepository postRepository, CommentRepository commentRepository, UserRepository userRepository, ChatRepository chatRepository, NotificationRepository notificationRepository, SseController sseController) {
+    public ReportService(ReportRepository reportRepository, UserService userService, QnARepository qnARepository, PostRepository postRepository, CommentRepository commentRepository, UserRepository userRepository, ChatRepository chatRepository, NotificationRepository notificationRepository, SseController sseController, DelUserRepository delUserRepository) {
         this.reportRepository = reportRepository;
         this.userService = userService;
         this.qnARepository = qnARepository;
@@ -54,7 +59,10 @@ public class ReportService {
         this.chatRepository = chatRepository;
         this.notificationRepository = notificationRepository;
         this.sseController = sseController;
+        this.delUserRepository = delUserRepository;
     }
+
+
     @Transactional
     public Report reportCreate(ReportSaveReqDto dto) {
         String userEmail = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -64,32 +72,48 @@ public class ReportService {
         Post post = null;
         Comment comment = null;
         Chat chat = null;
-        String suspectEmail = null;
+        User suspectUser = null;
 
         if (dto.getCommentId() != null) {
             comment = commentRepository.findById(dto.getCommentId())
                     .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 Comment입니다."));
-            post = comment.getPost();
-            qnA = comment.getQna();
-            suspectEmail = comment.getUser().getEmail();
+            suspectUser = comment.getUser();
         } else if (dto.getPostId() != null) {
             post = postRepository.findById(dto.getPostId())
                     .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 Post입니다."));
-            suspectEmail = post.getUser().getEmail();
+            suspectUser = post.getUser();
         } else if (dto.getQnaId() != null) {
             qnA = qnARepository.findById(dto.getQnaId())
                     .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 QnA입니다."));
-            suspectEmail = qnA.getUser().getEmail();
+            suspectUser = qnA.getUser();
         } else if (dto.getChatMessageId() != null) {
-                chat = chatRepository.findById(dto.getChatMessageId())
-                        .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 Chat입니다."));
-                if (chat.getUser() == null) {
-                    throw new IllegalStateException("Chat에 연관된 User가 없습니다.");
-                }
-                suspectEmail = chat.getUser().getEmail();
-                System.out.println("피신고자 이메일 (채팅): " + suspectEmail);
+            chat = chatRepository.findById(dto.getChatMessageId())
+                    .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 Chat입니다."));
+            if (chat.getUser() == null) {
+                throw new IllegalStateException("Chat에 연관된 User가 없습니다.");
             }
+            suspectUser = chat.getUser();
+        }
 
+
+        if (suspectUser != null) {
+            suspectUser.setReportCount(suspectUser.getReportCount() + 1);
+
+            if (suspectUser.getReportCount() >= 5) {
+                String originalEmail = suspectUser.getEmail();
+
+                String updatedEmail = originalEmail + "_" + Instant.now().toEpochMilli();
+                suspectUser.setEmail(updatedEmail);
+
+                suspectUser.setDelYN(DelYN.Y);
+                userRepository.save(suspectUser);
+
+                DelUser delUser = DelUser.toEntity(originalEmail);
+                delUserRepository.save(delUser);
+            } else {
+                userRepository.save(suspectUser);
+            }
+        }
 
         Report report = dto.toEntity(user, qnA, post, comment, chat);
         report = reportRepository.save(report);
@@ -109,6 +133,7 @@ public class ReportService {
 
         return report;
     }
+
 
     public Page<ReportListResDto> reportList(Pageable pageable, String type) {
         Page<Report> reports;
