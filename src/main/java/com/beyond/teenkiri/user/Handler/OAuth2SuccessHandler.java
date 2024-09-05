@@ -73,9 +73,6 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
             throw new RuntimeException("해당 계정은 비활성화 상태입니다.");
         }
 
-        if (!user.getDelYN().equals(DelYN.N)) {
-            throw new RuntimeException("해당 계정은 비활성화 상태입니다.");
-        }
         Long getUserId = user.getId();
         Long userId = getUserId;
 
