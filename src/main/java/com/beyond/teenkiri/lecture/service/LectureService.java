@@ -218,7 +218,7 @@ public class LectureService {
 
     // 파일 크기 검증 메서드
     private void checkFileSize(MultipartFile file) {
-        long maxFileSize = 100 * 1024 * 1024; // 10MB (필요에 따라 조정 가능)
+        long maxFileSize = 10 * 1024 * 1024; // 10MB (필요에 따라 조정 가능)
         if (file.getSize() > maxFileSize) {
             throw new IllegalStateException("파일 크기가 너무 큽니다. 최대 파일 크기는 10MB입니다.");
         }
