@@ -17,7 +17,6 @@ public class WebConfig {
         config.addAllowedOrigin("https://www.teenkiri.site");
         config.addAllowedOrigin("https://server.teenkiri.site");
         config.addAllowedOriginPattern("*");
-        config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
