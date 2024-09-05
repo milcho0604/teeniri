@@ -19,14 +19,14 @@ spring:
           google:
             client-id: ${GOOGLE_TOKEN}
             client-secret: ${GOOGLE_SECRET}
-            scope: ${GOOGLE_SCOPE}
+            scope: profile, email
             redirect-uri: "https://server.teenkiri.site/login/oauth2/code/google"
             client-name: Google
             authorization-grant-type: authorization_code
           kakao:
             client-id: ${KAKAO_TOKEN}
             client-secret: ${KAKAO_SECRET}
-            scope: ${KAKAO_SCOPE}
+            scope: account_email, profile_nickname
             redirect-uri: "https://server.teenkiri.site/login/oauth2/code/kakao"
             client-name: Kakao
             client-authentication-method: client_secret_post
@@ -34,7 +34,7 @@ spring:
           naver:
             client-id: ${NAVER_TOKEN}
             client-secret: ${NAVER_SECRET}
-            scope: ${NAVER_SCOPE}
+            scope: email
             client-name: naver
             redirect-uri: "http://localhost:8088/login/oauth2/code/naver"
             authorization-grant-type: authorization_code
