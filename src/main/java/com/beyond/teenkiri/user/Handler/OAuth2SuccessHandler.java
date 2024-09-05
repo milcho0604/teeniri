@@ -2,7 +2,9 @@ package com.beyond.teenkiri.user.Handler;
 
 import com.beyond.teenkiri.common.domain.DelYN;
 import com.beyond.teenkiri.user.config.JwtTokenprovider;
+import com.beyond.teenkiri.user.domain.DelUser;
 import com.beyond.teenkiri.user.domain.User;
+import com.beyond.teenkiri.user.repository.DelUserRepository;
 import com.beyond.teenkiri.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,10 +26,9 @@ import java.util.Map;
 @Component
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    @Autowired
     private final JwtTokenprovider jwtTokenprovider;
-    @Autowired
     private final UserRepository userRepository;
+    private final DelUserRepository delUserRepository;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response
@@ -49,12 +50,26 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
             }
         }
 
+        System.out.println("핸들러입니다!!! 넘오올까요?");
         System.out.println(email);
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 소셜 회원입니다."));
-        if (!user.getDelYN().equals(DelYN.N)) {
+
+        if (delUserRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("영구 정지된 계정입니다.");
+        }
+
+        if (user.getReportCount() >= 5) {
+            user = user.deleteEmail(); // 이메일 삭제
+            userRepository.save(user);
+
+            // del_user 테이블에 이메일 삽입
+            DelUser delUser = DelUser.toEntity(email);
+            delUserRepository.save(delUser);
+
             throw new RuntimeException("해당 계정은 비활성화 상태입니다.");
         }
+
         Long getUserId = user.getId();
         Long userId = getUserId;
 

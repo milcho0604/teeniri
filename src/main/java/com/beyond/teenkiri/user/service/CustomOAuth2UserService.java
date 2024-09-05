@@ -5,6 +5,8 @@ import com.beyond.teenkiri.user.domain.User;
 import com.beyond.teenkiri.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.UnsatisfiedDependencyException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -23,6 +25,7 @@ import java.util.UUID;
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
+    @Autowired
     private final UserRepository userRepository;
 
     @Override
@@ -40,6 +43,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuthAttributes attributes = OAuthAttributes.of(registrationId,
                 userNameAttributeName, oAuth2User.getAttributes());
 
+        System.out.println("서비스입니다!!!!!!!!!!! 왓나요!!!!!!!!!!1");
+        System.out.println(attributes);
+
         User user = null;
         if ("kakao".equals(registrationId)) {
             user = kakaoSaveOrUpdate(attributes);
@@ -51,11 +57,13 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         }else {
             user = saveOrUpdate(attributes);
         }
+
+
+
         if (user.getName() == null){
             String temp = "이름을 변경해주세요";
             user.updateName(temp);
         }
-
         if (user.getNickname() == null) {
             String uuidNick = String.valueOf(UUID.randomUUID());
             user.updateNick(uuidNick);

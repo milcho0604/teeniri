@@ -14,6 +14,4 @@ public interface UserSubjectRepository extends JpaRepository<UserSubject, Long> 
     Optional<UserSubject> findBySubjectIdAndUserId(Long subjectId, Long userId);
     List<UserSubject> findByUserId(Long userId);
     List<UserSubject> findByUserEmail(String userEmail);
-
-
 }
