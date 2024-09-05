@@ -17,7 +17,7 @@ spring:
             client-id: ${GOOGLE_TOKEN}
             client-secret: ${GOOGLE_SECRET}
             scope: ${GOOGLE_SCOPE}
-            redirect-uri: "https://server.teenkiri.site/login/oauth2/code/google"
+            redirect-uri: "https://server.teenkiri.site/oauth2/code/google"
             client-name: Google
             authorization-grant-type: authorization_code
           kakao:
