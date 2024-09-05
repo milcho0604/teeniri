@@ -25,9 +25,7 @@ import java.util.UUID;
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
-    @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
     private final UserRepository userRepository;
 
     @Override
