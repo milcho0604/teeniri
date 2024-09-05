@@ -1,5 +1,6 @@
 package com.beyond.teenkiri.chat.config;
 
+import com.beyond.teenkiri.chat.service.ChatService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,7 +10,9 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
+import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
@@ -45,11 +48,22 @@ public class ChatRedisConfig {
         return redisTemplate;
     }
 
+//    @Bean
+//    @Qualifier("chatRedisContainer")
+//    public RedisMessageListenerContainer chatRedisContainer(@Qualifier("chatRedisFactory") RedisConnectionFactory chatFactory) {
+//        RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+//        container.setConnectionFactory(chatFactory);
+//        return container;
+//    }
+    
+
     @Bean
-    @Qualifier("chatRedisContainer")
-    public RedisMessageListenerContainer chatRedisContainer(@Qualifier("chatRedisFactory") RedisConnectionFactory chatFactory) {
+    public RedisMessageListenerContainer chatRedisContainer(@Qualifier("chatRedisFactory") RedisConnectionFactory chatFactory,
+                                                            ChatService chatService) {
         RedisMessageListenerContainer container = new RedisMessageListenerContainer();
         container.setConnectionFactory(chatFactory);
+
+        container.addMessageListener(new MessageListenerAdapter(chatService), new PatternTopic("/topic/*"));
         return container;
     }
 }
