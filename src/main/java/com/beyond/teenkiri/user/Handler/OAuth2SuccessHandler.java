@@ -49,6 +49,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
             }
         }
 
+        System.out.println("핸들러입니다!!! 넘오올까요?");
         System.out.println(email);
         User user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 소셜 회원입니다."));

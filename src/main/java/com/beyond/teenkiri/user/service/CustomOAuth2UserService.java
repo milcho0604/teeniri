@@ -40,6 +40,9 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuthAttributes attributes = OAuthAttributes.of(registrationId,
                 userNameAttributeName, oAuth2User.getAttributes());
 
+        System.out.println("서비스입니다!!!!!!!!!!! 왓나요!!!!!!!!!!1");
+        System.out.println(attributes);
+
         User user = null;
         if ("kakao".equals(registrationId)) {
             user = kakaoSaveOrUpdate(attributes);
