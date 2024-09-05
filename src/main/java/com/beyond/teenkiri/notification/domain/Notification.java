@@ -10,13 +10,14 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Builder
-public class Notification extends BaseTimeEntity implements Serializable {
+public class Notification implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +31,7 @@ public class Notification extends BaseTimeEntity implements Serializable {
 
     private String message;
     private String userEmail;
+    private LocalDateTime createdTime;
 
     @Enumerated(EnumType.STRING)
     private DelYN delYN;
@@ -44,6 +46,7 @@ public class Notification extends BaseTimeEntity implements Serializable {
                 .message(message)
                 .userEmail(userEmail)
                 .delYN(DelYN.N)
+                .createdTime(this.createdTime)
                 .build();
     }
 
