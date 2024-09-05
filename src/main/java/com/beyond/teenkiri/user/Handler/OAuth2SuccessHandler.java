@@ -26,11 +26,8 @@ import java.util.Map;
 @Component
 public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    @Autowired
     private final JwtTokenprovider jwtTokenprovider;
-    @Autowired
     private final UserRepository userRepository;
-    @Autowired
     private final DelUserRepository delUserRepository;
 
     @Override
