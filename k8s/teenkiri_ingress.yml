@@ -12,7 +12,7 @@ metadata:
 spec:
   tls:
   - hosts:
-    - "server.teenkiri.store"
+    - "server.teenkiri.site"
     secretName: teenkiri-com-tls
   rules:
     - host: server.teenkiri.site
