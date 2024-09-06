@@ -67,7 +67,6 @@ TEENKIRI의 목표는 무상으로 제공되는 고품질 교육을 통해 경�
 ### 배포툴
 
 ![kubernetes](https://img.shields.io/badge/kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
-![docker](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 ![nginx](https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
 ![amazonec2](https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)
 
@@ -91,7 +90,13 @@ TEENKIRI의 목표는 무상으로 제공되는 고품질 교육을 통해 경�
 이미지 들어갈 자리
 
 ### 아키텍쳐 선택이유
-적어야할자리
+|  | **Kubernetes** | docker compose |
+|:------:|:------:|:------:|
+| 아키텍처 | 다중호스트 | 단일호스트|
+|확상성|Scale-Out|Scale-Up 
+|로드밸런싱|자동설정|직접설정
+|HA|장애 감지 및 자동 복구| 장애 발생 시 서비스 다운
+|설정편의성|내부 서비스 디스커버리 자동 설정 | 서비스의 IP 주소나 도메인을 직접 지정
 
 
 ## 시스템 아키텍쳐
@@ -418,6 +423,20 @@ TEENKIRI의 목표는 무상으로 제공되는 고품질 교육을 통해 경�
   </details>
 </details>
 
+## 시행착오 관련 사항
+
+<detail>
+  <summary> 소셜로그인</summary>
+</detail>
+
+<detail>
+  <summary> 채팅</summary>
+</detail>
+
+<detail>
+  <summary> 파일업로드</summary>
+    오타 이슈
+</detail>
 
 ## 프로젝트 시연
 
