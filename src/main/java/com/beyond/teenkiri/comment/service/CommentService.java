@@ -79,11 +79,12 @@ public class CommentService {
 
             // 댓글 저장 후 QnA 작성자에게 알림 전송
 //            Notification notification = new Notification(qna.getId(), null, qna.getUser().getEmail(), qna.getTitle()+" QnA에 새로운 댓글이 달렸습니다.");
-            Notification notification = new Notification();
-            notification = notification.saveDto(qna.getId(), null, null, qna.getUser().getEmail(), qna.getTitle() + " QnA에 새로운 댓글이 달렸습니다.");
-            notificationRepository.save(notification);
-            sseController.publishMessage(notification);
-
+            if (!qna.getUser().getEmail().equals(user.getEmail())){
+                Notification notification = new Notification();
+                notification = notification.saveDto(qna.getId(), null, null, qna.getUser().getEmail(), qna.getTitle() + " QnA에 새로운 댓글이 달렸습니다.");
+                notificationRepository.save(notification);
+                sseController.publishMessage(notification);
+            }
         } else {
             throw new IllegalArgumentException("댓글이 달릴 게시글 또는 QnA ID가 필요합니다.");
         }
