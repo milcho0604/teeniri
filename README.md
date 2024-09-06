@@ -437,9 +437,44 @@ TEENKIRI의 목표는 무상으로 제공되는 고품질 교육을 통해 경�
 
 <details>
   <summary> 파일업로드</summary>
-  <img src = "">
+  nginx 파일크기 미설정으로 인한 오류
+  <img src = "https://github.com/user-attachments/assets/78a01dfd-5ce3-40ea-aea2-fb97fbe3329b">
+  tomcat 파일크기 미설정으로 인한 오류
   <img src = "https://github.com/user-attachments/assets/4cc4cdc3-736d-4022-a758-8ca3d45681d9">
 </details>
+
+<details>
+  <summary> ingress.yml 수정내역</summary>
+  
+  ```
+      nginx.ingress.kubernetes.io/affinity: "cookie"  # 세션 스티키니스 활성화
+      nginx.ingress.kubernetes.io/session-cookie-name: "teenkiri-session"  # 세션 쿠키 이름
+      nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"  # 쿠키 해시 알고리즘
+  ```
+</details>
+
+<details>
+  <summary> ingress.yml 수정내역</summary>
+  
+  ```
+      nginx.ingress.kubernetes.io/affinity: "cookie"  # 세션 스티키니스 활성화
+      nginx.ingress.kubernetes.io/session-cookie-name: "teenkiri-session"  # 세션 쿠키 이름
+      nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"  # 쿠키 해시 알고리즘
+  ```
+</details>
+
+<details>
+  <summary> application.yml 수정내역</summary>
+  
+  ```
+    spring:
+      servlet:
+        multipart:
+          max-file-size: 3GB   # 파일당 최대 크기
+          max-request-size: 3GB  # 전체 요청 크기
+  ```
+</details>
+
 
 ## 프로젝트 시연
 
