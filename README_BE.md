@@ -442,8 +442,18 @@ TEENKIRI의 목표는 무상으로 제공되는 고품질 교육을 통해 경�
 
 #### 👤 로그인, 회원가입
 <details>
-  <summary>회원가입 및 로그인</summary>
+  <summary>회원가입 및 로그인, 회원탈퇴</summary>
   <img src="https://github.com/user-attachments/assets/4cc8f76e-4b72-4a83-a12b-d6811b53b024">
+</details>
+
+<details>
+  <summary>구글 로그인</summary>
+  <img src="https://github.com/user-attachments/assets/fc8a4280-55c5-42bb-87d9-194c0f93bf6d">
+</details>
+
+<details>
+  <summary>카카오 로그인</summary>
+  <img src="https://github.com/user-attachments/assets/cd6cc14e-c548-4fc4-b4c4-4541cad0351b">
 </details>
 
 <details>
@@ -484,6 +494,16 @@ TEENKIRI의 목표는 무상으로 제공되는 고품질 교육을 통해 경�
 <br>
   <summary>로그아웃</summary>
 <img src ="https://github.com/user-attachments/assets/ac47c3f1-f6d9-44c4-8c3f-d10393a46e89">
+</details>
+
+<details>
+  <summary>회원탈퇴</summary>
+  <img src = "https://github.com/user-attachments/assets/9bf702fe-421f-45af-8f5f-90e01fb997c5">
+</details>
+
+<details>
+  <summary>회원탈퇴 확인</summary>
+  <img src = "https://github.com/user-attachments/assets/24022045-7afc-4a79-9c6c-433811b8ac14">
 </details>
 
 #### 📚 강좌 및 강의
@@ -562,3 +582,12 @@ TEENKIRI의 목표는 무상으로 제공되는 고품질 교육을 통해 경�
   <img src= "https://github.com/user-attachments/assets/3fc0e9f5-54ba-4c33-88fa-be6c36749ea1">
 </details>
 
+<details>
+  <summary>신고 누적으로 계정 정지된 회원 확인 - 관리자</summary>
+  <img src= "https://github.com/user-attachments/assets/aaec10bb-8898-4921-94f4-1f9188ca6e47">
+</details>
+
+<details>
+  <summary> 회원 탈퇴 처리 확인</summary>
+  <img src= "https://github.com/user-attachments/assets/2d1eb4e4-8188-4f45-9b3e-ac0d978ebe1a">
+</details>
