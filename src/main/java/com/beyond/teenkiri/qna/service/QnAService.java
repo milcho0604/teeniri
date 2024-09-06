@@ -85,7 +85,7 @@ public class QnAService {
         }
 
         Notification notification = new Notification();
-        notification = notification.saveDto(qnA.getId(), null, null, qnA.getSubject().getUserTeacher().getEmail(), qnA.getTitle()+ " 강좌에 대한 질문이 달렸습니다.");
+        notification = notification.saveDto(qnA.getId(), null, null, qnA.getSubject().getUserTeacher().getEmail(), qnA.getTitle()+ " 질문: 강좌에 대한 질문이 달렸습니다.");
         notificationRepository.save(notification);
         sseController.publishMessage(notification);
         return qnARepository.save(qnA);
@@ -176,7 +176,7 @@ public class QnAService {
 
 
         Notification notification = new Notification();
-        notification = notification.saveDto(qnA.getId(), null, null, qnA.getUser().getEmail(), qnA.getTitle()+ " 질문에 대한 답변이 달렸습니다.");
+        notification = notification.saveDto(qnA.getId(), null, null, qnA.getUser().getEmail(), qnA.getTitle()+ " 답변: 질문에 대한 답변이 달렸습니다.");
         notificationRepository.save(notification);
         sseController.publishMessage(notification);
         return qnARepository.save(qnA);
@@ -210,7 +210,7 @@ public class QnAService {
             throw new IllegalArgumentException("작성자 본인만 수정할 수 있습니다.");
         }
         Notification notification = new Notification();
-        notification = notification.saveDto(qnA.getId(), null, null, qnA.getSubject().getUserTeacher().getEmail(), qnA.getTitle()+ " 강좌에 대한 질문이 수정되었습니다.");
+        notification = notification.saveDto(qnA.getId(), null, null, qnA.getSubject().getUserTeacher().getEmail(), qnA.getTitle()+ " 수정: 강좌에 대한 질문이 수정되었습니다.");
         notificationRepository.save(notification);
         sseController.publishMessage(notification);
 
@@ -248,7 +248,7 @@ public class QnAService {
             throw new IllegalArgumentException("접근 권한이 없습니다.");
         }
         Notification notification = new Notification();
-        notification = notification.saveDto(qnA.getId(), null, null, qnA.getUser().getEmail(), qnA.getTitle()+ " 질문에 대한 답변이 수정되었습니다.");
+        notification = notification.saveDto(qnA.getId(), null, null, qnA.getUser().getEmail(), qnA.getTitle()+ " 수정: 질문에 대한 답변이 수정되었습니다.");
         notificationRepository.save(notification);
         sseController.publishMessage(notification);
     }
