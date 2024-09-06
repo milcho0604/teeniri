@@ -1,14 +1,14 @@
 server:
   port: 8080
-  servlet:
-    multipart:
-      max-file-size: 3GB   # 파일당 최대 크기
-      max-request-size: 3GB  # 전체 요청 크기
   tomcat:
     max-http-post-size: 3221225472  # 3GB
     max-swallow-size: 3221225472    # 3GB
 
 spring:
+  servlet:
+    multipart:
+      max-file-size: 3GB   # 파일당 최대 크기
+      max-request-size: 3GB  # 전체 요청 크기
   security:
     oauth2:
       client:
