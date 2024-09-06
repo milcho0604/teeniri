@@ -30,6 +30,10 @@ public class PostController {
     private final PostService postService;
     private final CommentService commentService;
 
+    // 시스템의 용량 제한 설정값을 필드로 선언
+    @Value("${spring.servlet.multipart.max-file-size}")
+    private String maxFileSize;
+
     @Autowired
     public PostController(PostService postService, CommentService commentService) {
         this.postService = postService;
@@ -41,21 +45,24 @@ public class PostController {
     public String postCreateScreen() {
         return "/board/post/create";
     }
-    // 1. 시스템의 용량 제한 설정값을 가져옴 (application.yml / properties에서 설정된 값)
-    @Value("${spring.servlet.multipart.max-file-size}")
-    String maxFileSize;
+    
+
     // 게시물을 생성합니다.
     @PostMapping("create")
     public ResponseEntity<?> postCreatePost(PostSaveReqDto dto,
                                             @RequestPart(value="image", required = false) MultipartFile imageSsr) {
-        // 3. 시스템의 설정된 용량 제한 출력
+        // 시스템의 설정된 용량 제한 출력
         System.out.println("Max file size allowed by the system: " + maxFileSize);
         try {
+            if (imageSsr != null) {
+                long imageSizeInBytes = imageSsr.getSize();
+                System.out.println("Uploaded image size: " + imageSizeInBytes + " bytes");
+            } else {
+                System.out.println("No image uploaded");
+            }
 
-            long imageSizeInBytes = imageSsr.getSize();
-            System.out.println("Uploaded image size: " + imageSizeInBytes + " bytes");
             Post post = postService.postCreate(dto, imageSsr);
-            CommonResDto commonResDto = new CommonResDto(HttpStatus.CREATED, "게시글(자유게시판)이 성공적으로 등록되었습니다.",post.getId());
+            CommonResDto commonResDto = new CommonResDto(HttpStatus.CREATED, "게시글(자유게시판)이 성공적으로 등록되었습니다.", post.getId());
             return new ResponseEntity<>(commonResDto, HttpStatus.CREATED);
         } catch (SecurityException | EntityNotFoundException e) {
             e.printStackTrace();
@@ -63,6 +70,7 @@ public class PostController {
             return new ResponseEntity<>(commonErrorDto, HttpStatus.BAD_REQUEST);
         }
     }
+
 
 //    @GetMapping("list")
 //    public ResponseEntity<?> postListResDtosList(@PageableDefault(size = 10, sort = "createdTime", direction = Sort.Direction.DESC) Pageable pageable) {
