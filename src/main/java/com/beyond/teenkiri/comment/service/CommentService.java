@@ -65,12 +65,12 @@ public class CommentService {
 
             // 댓글 저장 후 게시글 작성자에게 알림 전송
 //            Notification notification = new Notification(null, post.getId(), post.getUser().getEmail(), post.getTitle() + " 게시글에 새로운 댓글이 달렸습니다.");
-
-            Notification notification = new Notification();
-            notification = notification.saveDto(null, post.getId(), null, post.getUser().getEmail(), post.getTitle() + " 게시글에 새로운 댓글이 달렸습니다.");
-            notificationRepository.save(notification);
-            sseController.publishMessage(notification);
-
+            if(!post.getUser().getEmail().equals(user.getEmail()){
+                Notification notification = new Notification();
+                notification = notification.saveDto(null, post.getId(), null, post.getUser().getEmail(), post.getTitle() + " 게시글에 새로운 댓글이 달렸습니다.");
+                notificationRepository.save(notification);
+                sseController.publishMessage(notification);
+            }
         } else if (dto.getQnaId() != null) {
             QnA qna = qnaRepository.findById(dto.getQnaId())
                     .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 QnA입니다."));

@@ -126,7 +126,7 @@ public class ReportService {
 
         for (String email : filteredAdminEmails) {
             Notification notification = new Notification();
-            notification = notification.saveDto(null, null, report.getId(), email, report.getReason() + "으로 신고가 접수되었습니다.");
+            notification = notification.saveDto(null, null, report.getId(), email, "신고: "+report.getReason() + "으로 신고가 접수되었습니다.");
             notificationRepository.save(notification);
             sseController.publishMessage(notification);
         }
