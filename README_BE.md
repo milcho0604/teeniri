@@ -1,6 +1,5 @@
-![null_틴키리](https://github.com/user-attachments/assets/08a561c5-f43c-4d95-a8ff-13dfd638a6af)
+[![null_틴키리](https://github.com/user-attachments/assets/08a561c5-f43c-4d95-a8ff-13dfd638a6af)](https://www.teenkiri.site/)
 
-# 팀명: TEENKIRI
 
 ## 팀원
 
@@ -12,6 +11,7 @@
 | ![김창현](https://github.com/user-attachments/assets/6cbde653-2dc2-41bc-967b-98c385ca0324) | ![김정은](https://github.com/user-attachments/assets/39f023ed-c272-4218-b11c-c03c2c51ed5e) | ![이예나](https://github.com/user-attachments/assets/50ca9133-e2ab-4d45-b4ee-200bc1f21f31) | ![이한아](https://github.com/user-attachments/assets/29f30df2-465e-45e3-925a-c84bdb003a72) | ![황요한](https://github.com/user-attachments/assets/f69d21a0-496b-46e3-b380-3443a905a791) |
 
 </center>
+<br><br>
 
 ## ✏️TEENKIRI: 초등학생을 위한 온라인 교육 사이트
 
