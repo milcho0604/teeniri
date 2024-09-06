@@ -85,10 +85,9 @@ TEENKIRI의 목표는 무상으로 제공되는 고품질 교육을 통해 경�
 ![Teenieping](https://github.com/user-attachments/assets/e7a4b2f6-ba62-4fcf-b8f1-b076d0db859d)
 
 
-## 기능 아키텍쳐 배포 과정
 ## 배포 아키텍쳐
-이미지 들어갈 자리
-
+![배포아키텍쳐](https://github.com/user-attachments/assets/c5ea69d0-0674-4cc2-b48c-b08aa175737e)
+<br>
 ### 아키텍쳐 선택이유
 |  | **Kubernetes** | docker compose |
 |:------:|:------:|:------:|
@@ -97,19 +96,19 @@ TEENKIRI의 목표는 무상으로 제공되는 고품질 교육을 통해 경�
 |로드밸런싱|자동설정|직접설정
 |HA|장애 감지 및 자동 복구| 장애 발생 시 서비스 다운
 |설정편의성|내부 서비스 디스커버리 자동 설정 | 서비스의 IP 주소나 도메인을 직접 지정
-
+<br><br>
 
 ## 시스템 아키텍쳐
 ### 백엔드 아키텍쳐
 ![백엔드아키텍쳐](https://github.com/user-attachments/assets/53f6f1eb-13c2-46de-951d-059a298a2b5e)
-
+<br>
 <details>
   <summary>통신플로우</summary>
   <img src="https://github.com/user-attachments/assets/a5c9e695-5d42-4d8c-bf0f-0e2914bcd0cf">
   <img src="https://github.com/user-attachments/assets/8b8a8a56-00da-402b-8d8e-d187f81f008c">
   <img src="https://github.com/user-attachments/assets/ced481be-325d-4dcb-b52b-826d4e9065c4">
 </details>
-
+<br>
 <details>
   <summary> 세션 로그인 플로우</summary>
   <img src="https://github.com/user-attachments/assets/048135b9-f2ad-43ed-9b99-50f35abe0898">
