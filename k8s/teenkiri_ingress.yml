@@ -4,7 +4,7 @@ metadata:
   name: teenkiri-ingress
   namespace: teenkiri
   annotations:
-    nginx.ingress.kubernetes.io/proxy-body-size: "3G"
+    nginx.ingress.kubernetes.io/proxy-body-size: "3G" 
     nginx.ingress.kubernetes.io/client-body-buffer-size: "3G"
     nginx.ingress.kubernetes.io/affinity: "cookie"  # 세션 스티키니스 활성화
     nginx.ingress.kubernetes.io/session-cookie-name: "teenkiri-session"  # 세션 쿠키 이름
