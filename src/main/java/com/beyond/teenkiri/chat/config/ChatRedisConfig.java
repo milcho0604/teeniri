@@ -55,7 +55,7 @@ public class ChatRedisConfig {
 //        container.setConnectionFactory(chatFactory);
 //        return container;
 //    }
-    
+
 
     @Bean
     public RedisMessageListenerContainer chatRedisContainer(@Qualifier("chatRedisFactory") RedisConnectionFactory chatFactory,
