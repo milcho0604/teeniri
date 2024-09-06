@@ -61,8 +61,15 @@ TEENKIRI의 목표는 무상으로 제공되는 고품질 교육을 통해 경�
 ![GitHub](https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white)
 ![Gather](https://img.shields.io/badge/gather-2F5EF5?style=for-the-badge)
 ![figma](https://img.shields.io/badge/figma-2F5EF5?style=for-the-badge)
+![github-actions](https://img.shields.io/badge/github%20actions-2088FF?style=for-the-badge)
+![postman](https://img.shields.io/badge/postman-F05032?style=for-the-badge&logo=postman&logoColor=white)
 
+### 배포툴
 
+![kubernetes](https://img.shields.io/badge/kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
+![docker](https://img.shields.io/badge/docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![nginx](https://img.shields.io/badge/nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)
+![amazonec2](https://img.shields.io/badge/amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)
 
 ## WBS
 
