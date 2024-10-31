@@ -1,4 +1,4 @@
-[![null_틴키리](https://github.com/user-attachments/assets/08a561c5-f43c-4d95-a8ff-13dfd638a6af)](https://www.teenkiri.site/)
+![틴키리배포](https://github.com/user-attachments/assets/324feeff-df5c-4b86-ae14-17d87185ad18)[![null_틴키리](https://github.com/user-attachments/assets/08a561c5-f43c-4d95-a8ff-13dfd638a6af)](https://www.teenkiri.site/)
 
 
 ## 팀원
@@ -86,7 +86,8 @@ TEENKIRI의 목표는 무상으로 제공되는 고품질 교육을 통해 경�
 
 
 ## 배포 아키텍쳐
-![배포아키텍쳐](https://github.com/user-attachments/assets/c5ea69d0-0674-4cc2-b48c-b08aa175737e)
+![틴키리배포](https://github.com/user-attachments/assets/fea977dc-5e98-476b-8828-459dfad0c1d6)
+
 <br>
 ### 아키텍쳐 선택이유
 |  | **Kubernetes** | docker compose |
