@@ -1,5 +1,3 @@
-![틴키리배포](https://github.com/user-attachments/assets/324feeff-df5c-4b86-ae14-17d87185ad18)[![null_틴키리](https://github.com/user-attachments/assets/08a561c5-f43c-4d95-a8ff-13dfd638a6af)](https://www.teenkiri.site/)
-
 
 ## 팀원
 
