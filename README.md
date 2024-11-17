@@ -454,15 +454,6 @@ TEENKIRI의 목표는 무상으로 제공되는 고품질 교육을 통해 경�
   ```
 </details>
 
-<details>
-  <summary> ingress.yml 수정내역</summary>
-  
-  ```
-      nginx.ingress.kubernetes.io/affinity: "cookie"  # 세션 스티키니스 활성화
-      nginx.ingress.kubernetes.io/session-cookie-name: "teenkiri-session"  # 세션 쿠키 이름
-      nginx.ingress.kubernetes.io/session-cookie-hash: "sha1"  # 쿠키 해시 알고리즘
-  ```
-</details>
 
 <details>
   <summary> application.yml 수정내역</summary>
